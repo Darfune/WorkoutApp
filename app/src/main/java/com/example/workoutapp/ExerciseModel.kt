@@ -9,6 +9,20 @@ class ExerciseModel(
 )
 {
 
+    fun getName(): String{
+        return name
+    }
 
+    fun getImage(): Int{
+        return image
+    }
+
+    fun getIsSelected(): Boolean{
+        return isSelected
+    }
+
+    fun setIsSelected(isSelected: Boolean){
+        this.isSelected = isSelected
+    }
 
 }
