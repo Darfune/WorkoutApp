@@ -1,10 +1,14 @@
 package com.example.workoutapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.View
+import android.widget.Toast
 import com.example.workoutapp.databinding.ActivityExerciseBinding
+import kotlin.random.Random
 
 class ExerciseActivity : AppCompatActivity() {
 
@@ -13,6 +17,11 @@ class ExerciseActivity : AppCompatActivity() {
     private var restTimer: CountDownTimer? = null
     private var timerProgress = 0
     private var restFlag = true
+
+    private var exerciseList: ArrayList<ExerciseModel>? = null
+    private var selected: Int = 1
+
+    private var counter: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +37,8 @@ class ExerciseActivity : AppCompatActivity() {
         binding?.exerciseToolbar?.setNavigationOnClickListener {
             onBackPressed()
         }
+
+        exerciseList = Constants.defaultExerciseList()
 
         setupRestView()
     }
@@ -53,22 +64,47 @@ class ExerciseActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun setupRestView(){
-        if (restTimer != null){
-            restTimer?.cancel()
-            timerProgress = 0
-        }
-
-        if (restFlag){
-            restFlag = false
-            binding?.titleTextView?.text = "Get Ready For Exercise"
-            setRestProgressBar(10000)
+        if (counter >= 7){
+            Toast.makeText(this@ExerciseActivity, "You Finished", Toast.LENGTH_SHORT).show()
         }
         else{
-            restFlag = true
-            binding?.titleTextView?.text = "Exercise Name"
-            setRestProgressBar(30000)
-        }
+            if (restTimer != null){
+                restTimer?.cancel()
+                timerProgress = 0
 
+            }
+
+            if (restFlag){
+                restFlag = false
+                setExerciseImage(false)
+                setRestProgressBar(1000)
+            }
+            else{
+                restFlag = true
+                setExerciseImage(true)
+                setRestProgressBar(2000)
+                counter++
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setExerciseImage(flag: Boolean) {
+        if (flag){
+            binding?.titleTextView?.text = "" +  exerciseList!![selected].getName()
+            binding?.exerciseImageView?.setImageResource(exerciseList!![selected].getImage())
+            binding?.exerciseImageView?.visibility = View.VISIBLE
+
+        }
+        else{
+            do {
+                selected = (0 until (exerciseList?.size!!)).random()
+            }while (exerciseList!![selected].getIsSelected())
+            exerciseList!![selected].setIsSelected(true)
+
+            binding?.exerciseImageView?.visibility = View.INVISIBLE
+            binding?.titleTextView?.text = "Get Ready for " +  exerciseList!![selected].getName()
+        }
     }
 
     override fun onDestroy() {
