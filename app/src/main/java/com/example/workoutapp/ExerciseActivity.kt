@@ -92,6 +92,8 @@ class ExerciseActivity : AppCompatActivity() {
     private fun setExerciseImage(flag: Boolean) {
         if (flag){
             binding?.titleTextView?.text = "" +  exerciseList!![selected].getName()
+            binding?.upcomingExerciseTopTextView?.visibility = View.INVISIBLE
+            binding?.upcomingExerciseBottomTextView?.visibility = View.INVISIBLE
             binding?.exerciseImageView?.setImageResource(exerciseList!![selected].getImage())
             binding?.exerciseImageView?.visibility = View.VISIBLE
 
@@ -103,7 +105,10 @@ class ExerciseActivity : AppCompatActivity() {
             exerciseList!![selected].setIsSelected(true)
 
             binding?.exerciseImageView?.visibility = View.INVISIBLE
-            binding?.titleTextView?.text = "Get Ready for " +  exerciseList!![selected].getName()
+            binding?.upcomingExerciseTopTextView?.visibility = View.VISIBLE
+            binding?.upcomingExerciseBottomTextView?.text = exerciseList!![selected].getName()
+            binding?.upcomingExerciseBottomTextView?.visibility = View.VISIBLE
+            binding?.titleTextView?.text = "Rest"
         }
     }
 
