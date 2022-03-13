@@ -14,6 +14,14 @@ class ExerciseActivity : AppCompatActivity() {
         setContentView(binding?.root)
 
         setSupportActionBar(binding?.exerciseToolbar)
+
+        if (supportActionBar != null){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+
+        binding?.exerciseToolbar?.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 
     override fun onDestroy() {
