@@ -92,11 +92,11 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBarFrameLayout" />
+
     <TextView
         android:id="@+id/upcomingExerciseBottomTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Exercise"
         android:textColor="@color/light_purple"
         android:textSize="@dimen/default_button_text_size"
@@ -104,7 +104,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBarFrameLayout" />
+        tools:layout_editor_absoluteY="490dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
