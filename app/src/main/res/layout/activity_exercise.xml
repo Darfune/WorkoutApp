@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         android:text="Exercise"
         android:textColor="@color/light_purple"
-        android:textSize="@dimen/default_button_text_size"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
