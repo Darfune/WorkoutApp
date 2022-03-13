@@ -1,9 +1,9 @@
 package com.example.workoutapp
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.widget.Toast
 import com.example.workoutapp.databinding.ActivityExerciseBinding
 
 class ExerciseActivity : AppCompatActivity() {
@@ -11,7 +11,8 @@ class ExerciseActivity : AppCompatActivity() {
     private var binding: ActivityExerciseBinding?= null
 
     private var restTimer: CountDownTimer? = null
-    private var restProgress = 0
+    private var timerProgress = 0
+    private var restFlag = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,31 +32,43 @@ class ExerciseActivity : AppCompatActivity() {
         setupRestView()
     }
 
-    private fun setRestProgressBar(){
-        binding?.progressBar?.progress = restProgress
+    private fun setRestProgressBar(time: Long) {
+        binding?.progressBar?.progress = timerProgress
+        binding?.progressBar?.max = (time/1000).toInt()
 
-        restTimer = object: CountDownTimer(10000, 1000){
+        restTimer = object: CountDownTimer(time, 1000){
 
             override fun onTick(p0: Long) {
-                restProgress++
-                binding?.progressBar?.progress = 10 - restProgress
-                binding?.timerTextView?.text = (10 - restProgress).toString()
+                timerProgress++
+                binding?.progressBar?.progress = ((time/1000) - timerProgress).toInt()
+                binding?.timerTextView?.text = ((time/1000) - timerProgress).toString()
             }
 
             override fun onFinish() {
-                Toast.makeText(this@ExerciseActivity, "Here now we will start the exercise", Toast.LENGTH_SHORT).show()
+                setupRestView()
             }
 
         }.start()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setupRestView(){
         if (restTimer != null){
             restTimer?.cancel()
-            restProgress = 0
+            timerProgress = 0
         }
 
-        setRestProgressBar()
+        if (restFlag){
+            restFlag = false
+            binding?.titleTextView?.text = "Get Ready For Exercise"
+            setRestProgressBar(10000)
+        }
+        else{
+            restFlag = true
+            binding?.titleTextView?.text = "Exercise Name"
+            setRestProgressBar(30000)
+        }
+
     }
 
     override fun onDestroy() {
