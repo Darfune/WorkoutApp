@@ -99,12 +99,12 @@
         android:layout_height="wrap_content"
         android:text="Exercise"
         android:textColor="@color/light_purple"
-        android:textSize="20sp"
+        android:textSize="@dimen/default_button_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="490dp" />
+        app:layout_constraintTop_toBottomOf="@+id/upcomingExerciseTopTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
