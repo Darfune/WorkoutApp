@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Projects/Kotlin/WorkoutApp/app/src/main/res/drawable/circlular_progressbar.xml" value="0.3655" />
         <entry key="..\:/Android Projects/Kotlin/WorkoutApp/app/src/main/res/drawable/item_circular_color_accent_border.xml" value="0.3655" />
         <entry key="..\:/Android Projects/Kotlin/WorkoutApp/app/src/main/res/drawable/item_color_accent_border_ripple_background.xml" value="0.3655" />
         <entry key="..\:/Android Projects/Kotlin/WorkoutApp/app/src/main/res/layout/activity_exercise.xml" value="0.36666666666666664" />
